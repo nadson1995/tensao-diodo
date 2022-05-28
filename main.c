@@ -97,9 +97,31 @@ void calcularLed()
     printf("Resistencia do diodo: %.2f ohn.\n", Rd);
     printf("\n\n");
 }
+void calcularLedSimplificado()
+{
+    float Vs, Ve, I;
+    printf("Informe a tensão da fonte.\n");
+    scanf("%f", &Vs);
+    printf("Informe a tensão do diodo.\n");
+    scanf("%f", &Ve);
+    printf("Informe a corrente no diodo.\n");
+    scanf("%f", &I);
+    printf("A resistencia necessaria é de no minimo: %f", (Vs - Ve) / I);
+}
 int main(int argc, char *argv[])
 {
-    calcularResistor();
+    int modo = 0;
+    printf("Escolha o modo de operação:\n1 - Calcular Resistor\n2 - Calcular Led\n");
+    scanf("%d", modo);
+    switch (modo)
+    {
+    case 1:
+        calcularResistor();
+        break;
+    case 2:
+        calcularLedSimplificado();
+        break;
+    }
     return 0;
 }
 
@@ -167,5 +189,5 @@ void calcularResistor()
     printf("Qual a cor %d?\n", numeroCores);
     confianca = getConfiancaAndPrint();
     printf("Confiança: %d\n", cor);
-    printf("A resistencia do resistor é: %d*10^(%d) +||- %.2f\n", aux, expoent, confianca*100);
+    printf("A resistencia do resistor é: %d*10^(%d) +||- %.2f\n", aux, expoent, confianca * 100);
 }
